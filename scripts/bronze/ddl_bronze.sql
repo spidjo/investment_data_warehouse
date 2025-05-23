@@ -16,7 +16,7 @@ DDL Script purpose:
 -- Ensure you have the correct database context before running this script
 USE DataWarehousePrj;
 -- Create the table in bronze schema if it doesn't exist
-IF OBJECT_ID('bronze.crm_cust_info') IS NOT NULL
+IF OBJECT_ID('bronze.crm_cust_info', 'U') IS NOT NULL
     DROP TABLE bronze.crm_cust_info;  -- Check if the table exists
 -- Drop the table if it exists
 -- Create the table in bronze schema
@@ -32,7 +32,7 @@ CREATE TABLE bronze.crm_cust_info (
 
 -- Create the table in bronze schema if it doesn't exist
 -- Check if the table exists
-IF OBJECT_ID('bronze.crm_prd_info') IS NOT NULL
+IF OBJECT_ID('bronze.crm_prd_info', 'U') IS NOT NULL
     DROP TABLE bronze.crm_prd_info;  -- Drop the table if it exists
 -- Create the table in bronze schema        
 CREATE TABLE bronze.crm_prd_info(
@@ -47,7 +47,7 @@ CREATE TABLE bronze.crm_prd_info(
 
 -- Create the table in bronze schema if it doesn't exist
 -- Check if the table exists
-IF OBJECT_ID('bronze.crm_sales_details') IS NOT NULL
+IF OBJECT_ID('bronze.crm_sales_details', 'U') IS NOT NULL
     DROP TABLE bronze.crm_sales_details; -- Drop the table if it exists
 -- Create the table in bronze schema
 CREATE TABLE bronze.crm_sales_details(
@@ -64,7 +64,7 @@ CREATE TABLE bronze.crm_sales_details(
 
 -- Create the table in bronze schema if it doesn't exist
 -- Check if the table exists
-IF OBJECT_ID('bronze.erp_cust_az12') IS NOT NULL
+IF OBJECT_ID('bronze.erp_cust_az12', 'U') IS NOT NULL
     DROP TABLE bronze.erp_cust_az12; -- Drop the table if it exists
 -- Create the table in bronze schema
 CREATE TABLE bronze.erp_cust_az12 (
@@ -75,7 +75,7 @@ CREATE TABLE bronze.erp_cust_az12 (
 
 -- Create the table in bronze schema if it doesn't exist
 -- Check if the table exists
-IF OBJECT_ID('bronze.erp_loc_a101') IS NOT NULL
+IF OBJECT_ID('bronze.erp_loc_a101', 'U') IS NOT NULL
     DROP TABLE bronze.erp_loc_a101; -- Drop the table if it exists
 -- Create the table in bronze schema
 CREATE TABLE bronze.erp_loc_a101 (
@@ -85,7 +85,7 @@ CREATE TABLE bronze.erp_loc_a101 (
 
 -- Create the table in bronze schema if it doesn't exist
 -- Check if the table exists
-IF OBJECT_ID('bronze.erp_px_cat_g1v2') IS NOT NULL
+IF OBJECT_ID('bronze.erp_px_cat_g1v2', 'U') IS NOT NULL
     DROP TABLE bronze.erp_px_cat_g1v2; -- Drop the table if it exists
 -- Create the table in bronze schema
 CREATE TABLE bronze.erp_px_cat_g1v2 (
