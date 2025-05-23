@@ -6,7 +6,7 @@ Created by: Siphiwo Lumkwana
 =================================================================================
 Create Bronze Schema Tables
 =================================================================================
-Script purpose:
+DDL Script purpose:
    This script creates the bronze layer tables in the Data Warehouse project.
    The tables are created in the bronze schema and include customer information, product information,
    sales details, and ERP data for customers, locations, and product categories.
