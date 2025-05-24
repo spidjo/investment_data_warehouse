@@ -1,16 +1,8 @@
 /*
-=================================================================================
-Create Silver Schema Tables
-=================================================================================
-Script purpose:
-    This script creates the silver layer tables in the Data Warehouse project.
-    The silver layer is used to store refined data that has been processed from the bronze layer.
-    The script checks if the tables already exist and drops them if they do before creating new ones.
-
-    WARNING: This script will drop existing tables if they exist.
-    Ensure you have backups or are aware of the data loss before running this script.
-    Change the database context to the Data Warehouse project
+    Description: This script creates the necessary tables in the bronze schema of the Data Warehouse project.
+    Warning:    This script will drop existing tables if they already exist, so use with caution.
 */
+
 -- Ensure you have the correct database context before running this script
 USE DataWarehousePrj;
 -- Create the table in silver schema if it doesn't exist
