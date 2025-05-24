@@ -1,14 +1,12 @@
 /*
-    This script creates or alters a stored procedure named 'sp_load_silver' in the 'silver' schema.
-    The procedure is designed to load data from the Bronze dataset into the Silver dataset.
-    It performs data cleaning, transformation, and deduplication before inserting the data into the Silver tables.
-
-    WARNING: This procedure will truncate the Silver tables before inserting new data.
-    Ensure that you have backups or that you are aware of the implications of truncating these tables.
-
-    Example usage:
-    EXEC silver.sp_load_silver;
+    Description: Stored Procedure to load Silver dataset from Bronze dataset
+                This procedure is responsible for extracting data from the Bronze tables,
+                transforming it as necessary, and loading it into the Silver tables.
+    Warning:    This procedure will truncate the Silver tables before inserting new data.
+                Ensure that you have backups or that you are aware of the implications of truncating these tables.
+    Example Usage: EXEC silver.sp_load_silver;
 */
+
 CREATE OR ALTER PROCEDURE silver.sp_load_silver
 AS
 BEGIN
