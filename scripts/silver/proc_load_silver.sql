@@ -6,7 +6,6 @@
                 Ensure that you have backups or that you are aware of the implications of truncating these tables.
     Example Usage: EXEC silver.sp_load_silver;
 */
-
 CREATE OR ALTER PROCEDURE silver.sp_load_silver
 AS
 BEGIN
@@ -26,7 +25,7 @@ BEGIN
         PRINT '>> Truncated silver.crm_cust_info table';
 
         PRINT '>> Inserting data into silver.crm_cust_info table';
-        INSERT INTO silver.crm_cust_info (cst_id, cst_key, cst_firstname, cst_lastname, cst_mirital_status, cst_gndr, cst_create_date)
+        INSERT INTO silver.crm_cust_info (cst_id, cst_key, cst_firstname, cst_lastname, cst_marital_status, cst_gndr, cst_create_date)
         --The following query inserts data into the Silver crm_cust_info dataset from the Bronze crm_cust_info dataset
         -- after cleaning and transforming the data
         -- The query removes duplicates and null values, and standardizes the data format for certain fields
@@ -35,18 +34,18 @@ BEGIN
                 TRIM(cst_firstname) AS cst_firstname,
                 TRIM(cst_lastname) AS cst_lastname,
                 CASE 
-                    WHEN UPPER(TRIM(cst_mirital_status)) = 'S' THEN 'Single' 
-                    WHEN UPPER(TRIM(cst_mirital_status)) = 'D' THEN 'Divorced' 
-                    WHEN UPPER(TRIM(cst_mirital_status)) = 'W' THEN 'Widowed' 
-                    WHEN UPPER(TRIM(cst_mirital_status)) = 'X' THEN 'Separated' 
-                    WHEN UPPER(TRIM(cst_mirital_status)) = 'C' THEN 'Common Law' 
-                    WHEN UPPER(TRIM(cst_mirital_status)) = 'M' THEN 'Married' 
-                    WHEN UPPER(TRIM(cst_mirital_status)) = 'P' THEN 'Partnership' 
-                    WHEN UPPER(TRIM(cst_mirital_status)) = 'T' THEN 'Domestic Partner' 
-                    WHEN UPPER(TRIM(cst_mirital_status)) = 'O' THEN 'Other' 
-                    WHEN UPPER(TRIM(cst_mirital_status)) = 'U' THEN 'Unknown' 
+                    WHEN UPPER(TRIM(cst_marital_status)) = 'S' THEN 'Single' 
+                    WHEN UPPER(TRIM(cst_marital_status)) = 'D' THEN 'Divorced' 
+                    WHEN UPPER(TRIM(cst_marital_status)) = 'W' THEN 'Widowed' 
+                    WHEN UPPER(TRIM(cst_marital_status)) = 'X' THEN 'Separated' 
+                    WHEN UPPER(TRIM(cst_marital_status)) = 'C' THEN 'Common Law' 
+                    WHEN UPPER(TRIM(cst_marital_status)) = 'M' THEN 'Married' 
+                    WHEN UPPER(TRIM(cst_marital_status)) = 'P' THEN 'Partnership' 
+                    WHEN UPPER(TRIM(cst_marital_status)) = 'T' THEN 'Domestic Partner' 
+                    WHEN UPPER(TRIM(cst_marital_status)) = 'O' THEN 'Other' 
+                    WHEN UPPER(TRIM(cst_marital_status)) = 'U' THEN 'Unknown' 
                     ELSE 'Unknown'
-                END AS cst_mirital_status,
+                END AS cst_marital_status,
                 CASE 
                     WHEN UPPER(TRIM(cst_gndr)) = 'M' THEN 'Male'
                     WHEN UPPER(TRIM(cst_gndr)) = 'F' THEN 'Female'
@@ -58,7 +57,7 @@ BEGIN
                 cst_key,
                 cst_firstname,
                 cst_lastname,
-                cst_mirital_status,
+                cst_marital_status,
                 cst_gndr,
                 cst_create_date,
                 ROW_NUMBER() OVER(PARTITION BY cst_id ORDER BY cst_create_date DESC) AS rn
