@@ -1,17 +1,9 @@
 /*
-
-Create Bronze Schema Tables
-
-DDL Script purpose:
-   This script creates the bronze layer tables in the Data Warehouse project.
-   The tables are created in the bronze schema and include customer information, product information,
-   sales details, and ERP data for customers, locations, and product categories.
-   The script checks if the tables already exist and drops them if they do before creating new ones.
-
-   WARNING: This script will drop existing tables if they exist.
-   Ensure you have backups or are aware of the data loss before running this script.
-   Change the database context to the Data Warehouse project
+   Create Bronze Schema Tables
+    Description: This script creates the necessary tables in the bronze schema of the Data Warehouse project.
+    Warning:     This script will drop existing tables if they already exist, so use with caution.
 */
+
 -- Change the database context to the Data Warehouse project
 -- Ensure you have the correct database context before running this script
 USE DataWarehousePrj;
