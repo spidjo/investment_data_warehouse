@@ -1,17 +1,15 @@
 
 /*
-  Script Name: sp_load_bronze.sql
-  Description: This script creates a stored procedure to load data into the bronze schema
-  Script Purpose: The purpose of this script is to load data into the bronze schema
-  The bronze schema is the first layer of the data lakehouse architecture
-  The bronze schema is used to store raw data from various source systems
-  The data is in CSV format'
-
-  This procedure does not accept any parameters.
-
-  Usage:
-  EXEC bronze.sp_load_bronze;
+    Description: Procedure to load data into the bronze schema.
+                This procedure performs the following tasks:
+                    1. Truncates existing tables in the bronze schema.
+                    2. Loads data from CSV files into the bronze schema tables.
+                    3. Handles errors during the data loading process.
+    Warning:    This procedure will truncate existing tables in the bronze schema.
+                Ensure that you have backups or that you are okay with losing existing data before running this procedure.
+    Example Usage: EXEC bronze.sp_load_bronze;
 */
+
 
 CREATE OR ALTER PROCEDURE bronze.sp_load_bronze
 AS
