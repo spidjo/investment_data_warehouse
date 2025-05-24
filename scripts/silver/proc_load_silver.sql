@@ -137,7 +137,8 @@ BEGIN
                     ELSE sls_sales
             END AS sls_sales,
             sls_quantity,
-            CASE
+            CASE    
+                    WHEN sls_price < 0 THEN ABS(sls_price)
                     WHEN sls_price = 0 OR sls_price IS NULL THEN (ABS(sls_sales) / NULLIF(sls_quantity, 0))
                     ELSE sls_price
                 END AS sls_price
