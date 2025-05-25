@@ -1,7 +1,7 @@
 
 
     -- Check the number of records in each table
-    -- to confirm that the data was inserted successfully
+    -- to confirm that the data was inserted successfully from GIT
     PRINT '-------------------------------------------------';
     PRINT 'Checking record counts in bronze schema tables...';
     PRINT '-------------------------------------------------';
