@@ -1,8 +1,17 @@
-USE investment_dw;
-/*This script loads data into the silver layer of the investment data warehouse.
-   It processes data from the bronze layer, applying transformations and validations.
-   The script handles clients, accounts, transactions, and market data.
+
+/*   Script Name: sp_silver_load_data.sql
+    Description: This script loads data into the silver layer tables from the bronze layer.
+    It does some data cleaning, transformation, enrichment, and validation before inserting the data.
+
+    Warning: This script truncates existing silver layer tables before loading new data.
+    Ensure that this is the intended behavior before executing the script.
+
+   Usage:
+   EXEC silver.sp_silver_load_data;
 */
+
+CREATE OR ALTER PROCEDURE silver.sp_silver_load_data
+AS
 
 --- Let's start by Truncating the silver layer tables
 PRINT 'Truncating silver layer tables...';
@@ -238,9 +247,11 @@ SELECT
     transaction_id, 
     account_id, 
     CASE SUBSTRING(transaction_type, 1, 2)
-        WHEN 'Tr' THEN 'Transfer'
-        WHEN 'De' THEN 'Deposit'
-        WHEN 'Wi' THEN 'Withdrawal'
+        WHEN 'Bu' THEN 'Buy'
+        WHEN 'Se' THEN 'Sell'
+        WHEN 'Di' THEN 'Dividend'
+        WHEN 'Fe' THEN 'Fee'
+        ELSE 'Unknown'
     END AS transaction_type,
     CASE 
         WHEN security_symbol IS NULL OR security_symbol = ''
@@ -283,6 +294,15 @@ SELECT
         WHEN transaction_type IS NULL OR transaction_type = ''
             THEN 'invalid'
         WHEN security_symbol IS NULL OR security_symbol = ''
+            THEN 'invalid'
+        WHEN TRY_CAST(quantity AS FLOAT) IS NULL
+            OR CAST(quantity AS FLOAT) = 0
+            OR TRY_CAST(price AS FLOAT) IS NULL
+            OR CAST(price AS FLOAT) = 0
+            OR TRY_CAST(amount AS FLOAT) IS NULL
+            OR CAST(amount AS FLOAT) = 0
+            THEN 'flagged'
+        WHEN transaction_type NOT IN ('Buy', 'Sell', 'Dividend', 'Fee')
             THEN 'invalid'
         WHEN TRY_CAST(quantity AS FLOAT) IS NULL
             OR CAST(quantity AS FLOAT) = 0
