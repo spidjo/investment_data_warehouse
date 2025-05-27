@@ -1,4 +1,3 @@
-
 USE investment_dw;
 /*This script loads data into the silver layer of the investment data warehouse.
    It processes data from the bronze layer, applying transformations and validations.
@@ -452,4 +451,3 @@ PRINT '=========================';
 PRINT 'All silver layer data loaded successfully.';
 
 PRINT 'Batch processing completed in: ' + CONVERT(VARCHAR, DATEDIFF(SECOND, @batch_start_time, GETDATE())) + ' seconds.';
-
