@@ -1,4 +1,3 @@
-
 --- Check the data quality in the silver schema tables
 --     PRINT '-------------------------------------------------';
 --     PRINT 'Checking data quality in silver schema tables...';    
