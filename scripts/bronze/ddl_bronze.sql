@@ -1,5 +1,7 @@
 /*
     This script creates the bronze layer tables in the database.
+    It is safe to run this script multiple times.
+    If the tables already exist, they will be dropped and recreated.
 */
 
 USE investment_dw;
@@ -19,12 +21,13 @@ CREATE TABLE bronze.tbl_crm_clients
     client_type NVARCHAR(50),
     first_name NVARCHAR(50),
     last_name NVARCHAR(50),
-    date_of_birth DATE,
+    date_of_birth NVARCHAR(50),
     email NVARCHAR(100),
     phone NVARCHAR(40),
     address NVARCHAR(200),
     country NVARCHAR(50),
-    created_at DATE
+    client_onboarding_date NVARCHAR(50),
+    risk_rating NVARCHAR(50)
 )
 GO
 
@@ -43,8 +46,8 @@ CREATE TABLE bronze.tbl_ims_accounts
     account_type NVARCHAR(50),
     currency NVARCHAR(10),
     status NVARCHAR(20),
-    balance DECIMAL(18, 2),
-    created_at DATETIME2(2)
+    balance NVARCHAR(50),
+    opening_date NVARCHAR(50)
 )
 GO
 
@@ -61,10 +64,10 @@ CREATE TABLE bronze.tbl_tp_transactions
     account_id NVARCHAR(50),
     transaction_type NVARCHAR(50),
     security_symbol NVARCHAR(20),
-    quantity INT,
-    price DECIMAL(18, 2),
-    amount DECIMAL(18, 2),
-    timestamp DATETIME2(2)
+    quantity NVARCHAR(50),
+    price NVARCHAR(50),
+    amount NVARCHAR(50),
+    transaction_date NVARCHAR(50)
 )
 GO
 
@@ -78,11 +81,11 @@ GO
 CREATE TABLE bronze.tbl_ff_market_data
 (
     symbol NVARCHAR(20),
-    makert_date DATE,
-    opening DECIMAL(18,2),
-    closeing DECIMAL(18,2),
-    volume INT,
-    high DECIMAL(18,2),
-    low DECIMAL(18,2)
+    market_date NVARCHAR(50),
+    opening NVARCHAR(50),
+    closing NVARCHAR(50),
+    volume NVARCHAR(50),
+    high NVARCHAR(50),
+    low NVARCHAR(50)
 )
 GO

@@ -24,7 +24,7 @@ BEGIN
 
         -- Declare the path to the source data and other variables
         DECLARE 
-            @file_path NVARCHAR(MAX) = 'C:\Users\siphi\MSSQL\investment_data_warehouse\datasets\',
+            @file_path NVARCHAR(MAX) = 'C:\Users\siphi\MSSQL\Data\',
             @start_time DATETIME,
             @batch_start_time DATETIME;
         --first truncate the table
