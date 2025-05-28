@@ -1,3 +1,9 @@
+/*
+    This script creates the gold layer tables and view in the database.
+	It creates business rady views with all the business rules.  Data ready to be used.
+    It is safe to run this script multiple times.
+    If the tables already exist, they will be dropped and recreated.
+*/
 
 USE investment_dw;
 GO
